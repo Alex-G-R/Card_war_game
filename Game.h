@@ -6,6 +6,7 @@
 #include <iostream>
 #include <random>
 #include <algorithm>
+#include <numeric>
 #include <cstdlib>
 #include <ctime>
 
@@ -22,6 +23,7 @@ private:
     int decks_in_use;
     int games_to_play;
     bool equal_jokers;
+    int turn_limit_before_shuffle;
 
     void init_game();
 
@@ -29,14 +31,29 @@ private:
     void fill_player_decks();
     void distribute_jokers();
 
+    void game_loop();
+
+    void check_for_loop(int& turns, int& re_shuffles);
+    void check_for_win(int& turns, bool& running, int& re_shuffles);
+
+    void handle_win(int winning_player, int& turns_param, bool& running, int& re_shuffles);
+
+    void run_turn(int& turns, bool& running, int& re_shuffles);
+    void give_card(std::vector<int>& from, std::vector<int>& to);
+    void battle(int& turns, bool& running, int& re_shuffles);
 
     // After sim stats
     std::vector<int> games_turns;
     int player_one_wins;
     int player_two_wins;
+    int ties;
+
+    int battles;
+    int shuffles;
+
 
 public:
-    Game(int joker_amount_param, int decks_in_use_param, int games_to_play_param, bool equal_jokers_param);
+    Game(int joker_amount_param, int decks_in_use_param, int games_to_play_param, bool equal_jokers_param, int turn_limit_before_shuffle_param);
 
     void start();
 
