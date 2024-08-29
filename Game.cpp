@@ -1,7 +1,7 @@
 
 #include "Game.h"
 
-Game::Game(const int joker_amount_param, const int decks_in_use_param, const int games_to_play_param, const bool equal_jokers_param, const int turn_limit_before_shuffle_param)
+Game::Game(const int joker_amount_param, const int decks_in_use_param, const int games_to_play_param, const bool equal_jokers_param, const int turn_limit_before_shuffle_param, const bool print_turns_param)
 {
 
     joker_amout = joker_amount_param;
@@ -9,6 +9,7 @@ Game::Game(const int joker_amount_param, const int decks_in_use_param, const int
     games_to_play = games_to_play_param;
     equal_jokers = equal_jokers_param;
     turn_limit_before_shuffle = turn_limit_before_shuffle_param;
+    print_turn_vector = print_turns_param;
 
     player_one_wins = 0;
     player_two_wins = 0;
@@ -33,9 +34,12 @@ void Game::start()
     const int sum = std::accumulate(games_turns.begin(), games_turns.end(), 0);
     const double avg = static_cast<double>(sum) / static_cast<double>(games_turns.size());
     std::cout << "Avg amount of turns per game: " << avg << "\n";
-    std::cout << "Games turn data: ";
-    std::sort(games_turns.begin(), games_turns.end());
-    print_vec(games_turns);
+    if(print_turn_vector)
+    {
+        std::cout << "Games turn data: ";
+        std::sort(games_turns.begin(), games_turns.end());
+        print_vec(games_turns);
+    }
 }
 
 

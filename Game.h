@@ -24,6 +24,7 @@ private:
     int games_to_play;
     bool equal_jokers;
     int turn_limit_before_shuffle;
+    bool print_turn_vector;
 
     void init_game();
 
@@ -53,7 +54,7 @@ private:
 
 
 public:
-    Game(int joker_amount_param, int decks_in_use_param, int games_to_play_param, bool equal_jokers_param, int turn_limit_before_shuffle_param);
+    Game(int joker_amount_param, int decks_in_use_param, int games_to_play_param, bool equal_jokers_param, int turn_limit_before_shuffle_param, bool print_turns_param);
 
     void start();
 
